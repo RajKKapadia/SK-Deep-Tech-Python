@@ -113,10 +113,10 @@ Print all the numbers divisible by 5 upto 20
 1
 '''
 
-for row in range(1, 6):
-    for col in range(6-row, 0, -1):
-        print(col, end=' ')
-    print('')
+# for row in range(1, 6):
+#     for col in range(6-row, 0, -1):
+#         print(col, end=' ')
+#     print('')
 
 '''
 1 2 3 4 5 
@@ -124,4 +124,24 @@ for row in range(1, 6):
 3 3 3 4 5 
 4 4 4 4 5 
 5 5 5 5 5
+'''
+
+for row in range(1, 6):
+    for col in range(1, 6):
+        if col < row:
+            print(row, end=' ')
+        else:
+            print(col, end=' ')
+    print('')
+
+
+'''
+1  
+2  4  
+3  6  9  
+4  8  12  16  
+5  10  15  20  25  
+6  12  18  24  30  36  
+7  14  21  28  35  42  49  
+8  16  24  32  40  48  56  64 
 '''
