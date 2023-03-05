@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 
+from database.mongo_connection import create_mongo_user, get_mongo_user, update_mongo_user
+
 app = Flask(__name__)
 
 
@@ -12,41 +14,79 @@ def home():
     )
 
 
-@app.route('/api/get/users', methods=['GET', 'POST'])
-def get_users():
-    return jsonify(
-        [
+@app.route('/api/create/user', methods=['GET', 'POST'])
+def create_user():
+    if request.method == 'GET':
+        return jsonify(
             {
-                'name': "Rajesh",
-                'email': 'rajesh@gmail.com'
-            },
-             {
-                'name': "Mahesh",
-                'email': 'mahesh@gmail.com'
+                'message': 'GET method is not allowed for this route.'
             }
-        ]
-    )
+        )
+    data = request.get_json()
+    result = create_mongo_user(data)
+
+    if result:
+        return jsonify(
+            {
+                'message': 'User created successfully.'
+            }
+        )
+    else:
+        return jsonify(
+            {
+                'message': 'User not created.'
+            }
+        )
+
 
 @app.route('/api/get/user', methods=['GET', 'POST'])
 def get_user():
-    data = request.get_json()
-    email = data['email']
-    print(email)
-    '''
-    We connect to our database
-    We check for the email in our database
-    If email is there we send email information
-    or we say no email found...
-    '''
-    return jsonify(
-        [
+    if request.method == 'POST':
+        return jsonify(
             {
-                'name': "Rajesh",
-                'email': 'rajesh@gmail.com'
-            },
-             {
-                'name': "Mahesh",
-                'email': 'mahesh@gmail.com'
+                'message': 'POST method is not allowed for this route.'
             }
-        ]
-    )
+        )
+    data = request.get_json()
+
+    user = get_mongo_user(data['email'])
+
+    if user == None:
+        return jsonify(
+            {
+                'message': 'User not found.',
+                'user': None
+            }
+        )
+    else:
+        return jsonify(
+            {
+                'message': 'User found',
+                'user': user
+            }
+        )
+    
+@app.route('/api/update/user', methods=['GET', 'POST'])
+def update_user():
+    if request.method == 'GET':
+        return jsonify(
+            {
+                'message': 'GET method is not allowed for this route.'
+            }
+        )
+    data = request.get_json()
+
+    user = update_mongo_user(data['email'], data['update'])
+
+    if user == None:
+        return jsonify(
+            {
+                'message': 'User not found.'
+            }
+        )
+    else:
+        return jsonify(
+            {
+                'message': 'User updated'
+            }
+        )
