@@ -27,6 +27,9 @@ style.configure('W.TButton', font=('Arial', 25))
 ttk.Button(main_frame, text='Calculate', command=calculate, style='W.TButton').grid(column=3, row=3, sticky=W)
 ttk.Button(main_frame, text='Quit', command=root.destroy, style='W.TButton').grid(column=3, row=4, sticky=W)
 
+# unit_one = StringVar()
+# ttk.Combobox(main_frame, font=('Arial', 25), textvariable=unit_one, values=('Feet', 'Meter', 'Inches')).grid(column=3, row=1, sticky=W)
+
 ttk.Label(main_frame, text='Feet', font=('Arial', 25)).grid(column=3, row=1, sticky=W)
 ttk.Label(main_frame, text='is equivalent to', font=('Arial', 25)).grid(column=1, row=2, sticky=E)
 ttk.Label(main_frame, text='Meter', font=('Arial', 25)).grid(column=3, row=2, sticky=W)
