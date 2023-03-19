@@ -19,5 +19,7 @@ Topics covered:
     - While
 * Functions
 * Class
-* Python + Flask basics
-* Python + Flask APIs
+* Python + Flask basics (05032023)
+* Python + Flask APIs (05032023)
+* Python + Flask Telegram Openai bot (12032023)
+* Tkinter (19032023)
