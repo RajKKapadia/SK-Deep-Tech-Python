@@ -23,3 +23,4 @@ Topics covered:
 * Python + Flask APIs (05032023)
 * Python + Flask Telegram Openai bot (12032023)
 * Tkinter (19032023)
+* Streamlit (19032023)
